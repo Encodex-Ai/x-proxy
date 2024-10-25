@@ -6,9 +6,10 @@ from services.oauth_setup import setup_and_validate_oauth
 from services.combined_services import CombinedServices
 from error_handlers import register_error_handlers
 from services.mongodb_service import MongoDBService
+from typing import Type
 
 
-def create_app(config_class=Config):
+def create_app(config_class: Type[Config] = Config) -> Flask:
     app = Flask(__name__)
     app.config.from_object(config_class)
 
@@ -22,7 +23,7 @@ def create_app(config_class=Config):
     mongodb_service = MongoDBService(app.config)
     app.mongodb_service = mongodb_service
 
-    combined_services = CombinedServices(mongodb_service, x_service)
+    combined_services = CombinedServices(mongodb_service, x_service, app.config)
     app.combined_services = combined_services
 
     app.register_blueprint(api_bp, url_prefix="/api")
@@ -31,7 +32,7 @@ def create_app(config_class=Config):
     register_error_handlers(app)
 
     @app.route("/")
-    def hello():
+    def hello() -> str:
         return "Greetings, your pseudo-X-API is up and running!"
 
     return app
@@ -39,4 +40,4 @@ def create_app(config_class=Config):
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=4000)

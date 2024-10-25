@@ -1,0 +1,229 @@
+{
+  "info": {
+    "name": "Twitter X API",
+    "description": "Collection to test Twitter X API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Drafts",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/get_drafts",
+          "host": ["{{base_url}}"],
+          "path": ["api", "get_drafts"]
+        }
+      }
+    },
+    {
+      "name": "Pull Mentions",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/pull_mentions",
+          "host": ["{{base_url}}"],
+          "path": ["api", "pull_mentions"]
+        }
+      }
+    },
+    {
+      "name": "Post Tweet",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Your tweet content here\",\n  \"in_reply_to_tweet_id\": \"\",\n  \"media_url\": \"\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/post_tweet",
+          "host": ["{{base_url}}"],
+          "path": ["api", "post_tweet"]
+        }
+      }
+    },
+    {
+      "name": "Post Draft Tweet",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draft_tweet_record_id\": \"<draft_tweet_record_id>\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/post_draft_tweet",
+          "host": ["{{base_url}}"],
+          "path": ["api", "post_draft_tweet"]
+        }
+      }
+    },
+    {
+      "name": "Get Tweet",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/get_tweet?tweet_id=<tweet_id>",
+          "host": ["{{base_url}}"],
+          "path": ["api", "get_tweet"],
+          "query": [
+            {
+              "key": "tweet_id",
+              "value": "<tweet_id>"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search Tweets",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/search_tweets?query=<search_term>",
+          "host": ["{{base_url}}"],
+          "path": ["api", "search_tweets"],
+          "query": [
+            {
+              "key": "query",
+              "value": "<search_term>"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Home Timeline",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/get_home_timeline",
+          "host": ["{{base_url}}"],
+          "path": ["api", "get_home_timeline"]
+        }
+      }
+    },
+    {
+      "name": "Follow User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"<user_id_to_follow>\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/follow_user",
+          "host": ["{{base_url}}"],
+          "path": ["api", "follow_user"]
+        }
+      }
+    },
+    {
+      "name": "Unfollow User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{API_SECRET_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"<user_id_to_unfollow>\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/unfollow_user",
+          "host": ["{{base_url}}"],
+          "path": ["api", "unfollow_user"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4000"
+    },
+    {
+      "key": "API_SECRET_KEY",
+      "value": "your_api_secret_key"
+    }
+  ]
+}
